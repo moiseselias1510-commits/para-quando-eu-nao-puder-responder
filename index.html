@@ -1,127 +1,128 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Para quando eu não puder te responder</title>
+<meta charset="UTF-8">
+<title>Para quando eu não puder te responder</title>
 
-  <!-- Impede indexação no Google -->
-  <meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="noindex, nofollow">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #fff7d6, #ffe066);
-      color: #5a3e00;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background-image: url("https://i.imgur.com/9ZQZQZQ.jpg"); /* FUNDO GIRASSOL */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .container {
-      background: #ffffff;
-      padding: 30px;
-      max-width: 500px;
-      width: 90%;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      text-align: center;
-    }
+.overlay {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
 
-    h1 {
-      margin-bottom: 10px;
-    }
+button {
+  background: #f4b400;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #fff;
+  margin-top: 15px;
+}
 
-    .subtitle {
-      font-size: 14px;
-      margin-bottom: 25px;
-      color: #7a5a00;
-    }
+button:hover {
+  background: #e0a800;
+}
 
-    button {
-      background: #f4b400;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 16px;
-      color: #fff;
-    }
+input {
+  padding: 10px;
+  width: 80%;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
 
-    button:hover {
-      background: #e0a800;
-    }
+.hidden {
+  display: none;
+}
 
-    input {
-      padding: 10px;
-      width: 80%;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      margin-bottom: 15px;
-      text-align: center;
-    }
-
-    .question {
-      margin-top: 20px;
-      font-weight: bold;
-    }
-
-    .answer {
-      margin-top: 10px;
-      font-style: italic;
-    }
-
-    .hidden {
-      display: none;
-    }
-  </style>
+.question-btn {
+  display: block;
+  width: 100%;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- TELA DE SENHA -->
-  <div class="container" id="login">
-    <h1>🌻</h1>
-    <p>Para quando eu não puder te responder<br>ou quando você não quiser perguntar.</p>
+<!-- LOGIN -->
+<div class="overlay" id="login">
+  <h2>🌻</h2>
+  <p><strong>Para quando eu não puder te responder<br>ou quando você não quiser perguntar.</strong></p>
+  <input type="password" id="password" placeholder="Senha">
+  <br>
+  <button onclick="checkPassword()">Entrar</button>
+</div>
 
-    <input type="password" id="password" placeholder="Senha">
-    <br>
-    <button onclick="checkPassword()">Entrar</button>
-  </div>
+<!-- LISTA DE PERGUNTAS -->
+<div class="overlay hidden" id="questions">
+  <h2>🌻</h2>
+  <p>
+    Aqui estão algumas coisas que eu talvez não saiba dizer na hora certa,
+    mas que eu sinto o tempo todo.
+  </p>
 
-  <!-- CONTEÚDO PRINCIPAL -->
-  <div class="container hidden" id="content">
-    <h1>🌻</h1>
+  <button class="question-btn" onclick="openAnswer()">
+    O quanto eu te amo?
+  </button>
+</div>
 
-    <p class="subtitle">
-      Aqui estão algumas coisas que eu talvez não saiba dizer na hora certa,
-      mas que eu sinto o tempo todo.
-    </p>
+<!-- RESPOSTA -->
+<div class="overlay hidden" id="answer">
+  <h2>🌻</h2>
 
-    <!-- PERGUNTA -->
-    <div class="question">
-      O quanto eu te amo?
-    </div>
+  <!-- SNOOPY (opcional) -->
+  <img src="https://i.imgur.com/0XKzn9C.png" alt="Snoopy com girassol" width="120">
 
-    <!-- RESPOSTA -->
-    <div class="answer">
-      <!-- ESCREVA SUA RESPOSTA AQUI -->
-      (escreva aqui o texto que você quiser)
-    </div>
-  </div>
+  <p style="margin-top:20px;">
+    <!-- ESCREVA SUA RESPOSTA AQUI -->
+    Mais do que eu sei explicar. Mesmo quando eu fico quieto,
+    é porque amar você me deixa sem palavras.
+  </p>
 
-  <script>
-    function checkPassword() {
-      const senha = document.getElementById("password").value;
-      if (senha === "181024") {
-        document.getElementById("login").classList.add("hidden");
-        document.getElementById("content").classList.remove("hidden");
-      } else {
-        alert("Senha incorreta 🌻");
-      }
-    }
-  </script>
+  <button onclick="back()">Voltar</button>
+</div>
+
+<script>
+function checkPassword() {
+  if (document.getElementById("password").value === "181024") {
+    login.classList.add("hidden");
+    questions.classList.remove("hidden");
+  } else {
+    alert("Senha incorreta 🌻");
+  }
+}
+
+function openAnswer() {
+  questions.classList.add("hidden");
+  answer.classList.remove("hidden");
+}
+
+function back() {
+  answer.classList.add("hidden");
+  questions.classList.remove("hidden");
+}
+</script>
 
 </body>
 </html>
