@@ -11,7 +11,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   min-height: 100vh;
-  background-image: url("fundo-girassol.png"); /* FUNDO GIRASSOL */
+  background-image: url("fundo-girassol.png");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -82,28 +82,43 @@ input {
     mas que eu sinto o tempo todo.
   </p>
 
-  <button class="question-btn" onclick="openAnswer()">
-    O quanto eu te amo?
-  </button>
+  <button class="question-btn" onclick="openAnswer(1)">O quanto eu te amo?</button>
+  <button class="question-btn" onclick="openAnswer(2)">Por que eu te amo?</button>
+  <button class="question-btn" onclick="openAnswer(3)">O que eu sinto quando penso em você?</button>
+  <button class="question-btn" onclick="openAnswer(4)">Você fica comigo?</button>
+  <button class="question-btn" onclick="openAnswer(5)">Você sente minha falta?</button>
+  <button class="question-btn" onclick="openAnswer(6)">Do que você tem ciúmes?</button>
+  <button class="question-btn" onclick="openAnswer(7)">O que você sente quando estou triste?</button>
+  <button class="question-btn" onclick="openAnswer(8)">O que você mais ama em mim?</button>
+  <button class="question-btn" onclick="openAnswer(9)">Você pensa no nosso futuro?</button>
+  <button class="question-btn" onclick="openAnswer(10)">O que você diria se eu estivesse aqui agora?</button>
 </div>
 
 <!-- RESPOSTA -->
 <div class="overlay hidden" id="answer">
   <h2>🌻</h2>
 
-  <!-- SNOOPY (opcional) -->
   <img src="https://i.imgur.com/0XKzn9C.png" alt="Snoopy com girassol" width="120">
 
-  <p style="margin-top:20px;">
-    <!-- ESCREVA SUA RESPOSTA AQUI -->
-    Mais do que eu sei explicar. Mesmo quando eu fico quieto,
-    é porque amar você me deixa sem palavras.
-  </p>
+  <p id="answerText" style="margin-top:20px;"></p>
 
   <button onclick="back()">Voltar</button>
 </div>
 
 <script>
+const respostas = {
+  1: "Mais do que eu sei explicar. Mesmo quando eu fico quieto, é porque amar você me deixa sem palavras.",
+  2: "Porque você é você. Porque me entende, me acalma e me faz querer ser melhor.",
+  3: "Um aperto bom no peito, um sorriso sem perceber e vontade de te proteger do mundo.",
+  4: "Mesmo com medo, mesmo sem saber tudo, eu fico. Ficar com você é uma escolha.",
+  5: "Sinto. Uma saudade que lembra o quanto você é importante pra mim.",
+  6: "Tenho ciúmes do que pode te machucar ou te fazer esquecer o quanto você é incrível.",
+  7: "Vontade de te abraçar primeiro e lembrar que você não precisa ser forte o tempo todo.",
+  8: "Seu jeito, até nas pequenas coisas, principalmente quando você nem percebe.",
+  9: "Penso. Não em tudo perfeito, mas em continuar escolhendo você.",
+  10: "Eu te puxaria pra perto, ficaria em silêncio e te diria que você é meu lugar."
+};
+
 function checkPassword() {
   if (document.getElementById("password").value === "181024") {
     login.classList.add("hidden");
@@ -113,9 +128,10 @@ function checkPassword() {
   }
 }
 
-function openAnswer() {
+function openAnswer(numero) {
   questions.classList.add("hidden");
   answer.classList.remove("hidden");
+  document.getElementById("answerText").innerText = respostas[numero];
 }
 
 function back() {
