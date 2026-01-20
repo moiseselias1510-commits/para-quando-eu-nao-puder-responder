@@ -11,9 +11,13 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   min-height: 100vh;
+
   background-image: url("fundo-girassol.png");
-  background-size: cover;
+  background-size: contain;          /* IMAGEM INTEIRA */
+  background-repeat: no-repeat;
   background-position: center;
+  background-color: #fff7d6;         /* COR DE APOIO */
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,6 +64,13 @@ input {
   display: block;
   width: 100%;
 }
+
+/* AJUSTE EXTRA PRA TELAS PEQUENAS */
+@media (max-width: 768px) {
+  body {
+    background-size: contain;
+  }
+}
 </style>
 </head>
 
@@ -82,7 +93,7 @@ input {
     mas que eu sinto o tempo todo.
   </p>
 
-  <button class="question-btn" onclick="openAnswer(1)">O quanto eu te amo</button>
+ <button class="question-btn" onclick="openAnswer(1)">O quanto eu te amo</button>
   <button class="question-btn" onclick="openAnswer(2)">Por que eu te amo</button>
   <button class="question-btn" onclick="openAnswer(3)">se eu te amo mesmo quando brigamos e vc faz um bocão gostoso</button>
   <button class="question-btn" onclick="openAnswer(4)">Do que eu tenho ciúmes</button>
@@ -92,13 +103,13 @@ input {
   <button class="question-btn" onclick="openAnswer(8)">Se eu sinto medo de te perder</button>
   <button class="question-btn" onclick="openAnswer(9)">Se eu confio em vc</button>
   <button class="question-btn" onclick="openAnswer(10)">Porque as vezes fico em silêncio</button>
-</div>
+  </div>
 
 <!-- RESPOSTA -->
 <div class="overlay hidden" id="answer">
   <h2>🌻</h2>
 
-  <img src="https://i.imgur.com/0XKzn9C.png" alt="Snoopy com girassol" width="120">
+  <!-- IMAGEM REMOVIDA AQUI -->
 
   <p id="answerText" style="margin-top:20px;"></p>
 
@@ -118,7 +129,6 @@ const respostas = {
   9: "Sim, não pq tenho ciúmes q n confio em vc mesmo sentindo ciúmes sei q vc faz oq é certo e confio em vc, é oq me acalma no ciúmes saber q vc n faria nada de errado.",
   10: "Só fico pensando na vida mesmo, as vezes na gente, no nosso futuro, ou na sua vó...."
 };
-
 function checkPassword() {
   if (document.getElementById("password").value === "181024") {
     login.classList.add("hidden");
